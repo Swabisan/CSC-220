@@ -147,10 +147,7 @@ public class VideoPoker {
 		}
 	}
 	
-    /** Finds the number of a same card rank in a hand and returns the number of repetitions
-     * Max hand = 5 Cards, Max # of pairs = 2, Card a, b track pairs for possible three or four of a kinds
-     * @return 0 = "Bad Hand", 1 = "One Pair", 2 = "Two Pairs", 3 = "Three of a Kind", 4 = "Four of a Kind"
-     */	
+    // These methods check for all available winning hands in poker
 	private boolean isOnePair(ArrayList<Card>orderedHand) 
 	{
 		for (int i = 0; i < 4; i++) {
@@ -287,11 +284,11 @@ public class VideoPoker {
     	Scanner in = new Scanner(System.in);
     	boolean userCheck = true;
     	
-    	showPayoutTable();  
+    	showPayoutTable();  																												// Shows multipliers
     	while (userCheck) {
     		System.out.println("======================================="
     				+ "\nBalance: $" + playerBalance);
-    		while (userCheck) {
+    		while (userCheck) {																											// User check input for bets
     			System.out.print("Enter wager: $");
     			if (in.hasNextInt()) {
     				playerBet = in.nextInt();
@@ -309,7 +306,7 @@ public class VideoPoker {
     		oneDeck.reset();
     		oneDeck.shuffle();
     		
-    		try {
+    		try {																																		// Deals hand to player
     			playerHand = new ArrayList<Card>(oneDeck.deal(numberOfCards));
     		} catch (PlayingCardException e) {
     			System.out.println("*** Fatal error while dealing cards. Exiting program! ***");
@@ -320,7 +317,7 @@ public class VideoPoker {
     			System.out.println("Hand: " + playerHand);
     		}
     		
-			while (!userCheck) {
+			while (!userCheck) {																										// Gets user input to replace cards	
 				Scanner input = new Scanner(System.in);
 				System.out.print("Enter positions of cards to replace (e.g. 1 4 5 ): ");
 				if (input.hasNext()) {
